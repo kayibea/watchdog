@@ -26,6 +26,12 @@ jobs:
         if: matrix.luaVersion == '5.1' || matrix.luaVersion == '5.3' || matrix.luaVersion == '5.4'
         run: luarocks install bit32
 
+      - name: Manually install test dependencies for LuaJIT
+        if: matrix.luaVersion == 'luajit'
+        run: |
+          luarocks install busted
+          luarocks install penlight
+
       - name: Test
         run: |
           luarocks test

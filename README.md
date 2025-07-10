@@ -1,6 +1,6 @@
 # 🐾 watchdog
 
-**`watchdog`** is a fast and minimal Lua module (written in C) that wraps the Linux `inotify` API, providing filesystem monitoring with Lua callbacks. Designed for performance and ease of use — ideal for file watchers, and reactive systems.
+**`watchdog`** is a fast and minimal Lua module (written in C) that wraps the Linux `inotify` API
 
 ---
 
@@ -11,7 +11,6 @@
 - Object-like instances for multiple watchers
 - Fully non-blocking `poll()` support
 - Includes all `inotify` constants
-- Simple API — clean and minimal
 
 ---
 
@@ -26,7 +25,6 @@ luarocks install watchdog
 ```lua
 local signal = require("posix.signal")
 local watchdog = require("watchdog")
-
 
 local running = true
 
@@ -56,14 +54,6 @@ Run tests with Busted:
 luarocks test
 ```
 The test suite will create and remove temporary files in `/tmp`.
-
-
-## 🐧 Requirements
-Linux (inotify is Linux-specific)
-
-Lua 5.1–5.4 or LuaJIT
-
-C compiler (for building the module)
 
 ## 📄 License
 MIT License — do whatever you want.

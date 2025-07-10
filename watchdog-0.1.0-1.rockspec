@@ -7,7 +7,7 @@ source = {
 description = {
   summary = "A fast and minimal Lua module (written in C) that wraps the Linux `inotify` API.",
   detailed = [[
-A fast and minimal Lua module (written in C) that wraps the Linux `inotify` API, providing filesystem monitoring with Lua callbacks. Designed for performance and ease of use — ideal for file watchers, and reactive systems.
+A fast and minimal Lua module (written in C) that wraps the Linux `inotify` API.
 ]],
   homepage = "https://github.com/kayibea/watchdog",
   license = "MIT",

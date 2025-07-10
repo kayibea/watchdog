@@ -17,7 +17,7 @@
 
 ## 🔧 Installation
 
-Via [LuaRocks](https://luarocks.org/modules/your-name/watchdog):
+Via [LuaRocks](https://luarocks.org/modules/gloirekiba/watchdog):
 
 ```bash
 luarocks install watchdog
@@ -27,17 +27,18 @@ luarocks install watchdog
 local signal = require("posix.signal")
 local watchdog = require("watchdog")
 
-local wd = watchdog.init()
-
-wd:add("/tmp", watchdog.IN_CREATE | watchdog.IN_DELETE, function(ev)
-  print("Event:", ev.name, ev.mask)
-end)
 
 local running = true
 
 signal.signal(signal.SIGINT, function()
   print("\nShutting down...")
   running = false
+end)
+
+local wd = watchdog.init()
+
+wd:add("/tmp", watchdog.IN_CREATE | watchdog.IN_DELETE, function(ev)
+  print("Event:", ev.name, ev.mask)
 end)
 
 while running do

@@ -23,7 +23,7 @@ typedef struct {
 static int l_add(lua_State *L) {
   Watchdog *wd = luaL_checkudata(L, 1, WATCHDOG_MT);
   const char *path = luaL_checkstring(L, 2);
-  int mask = luaL_checkinteger(L, 3);
+  uint32_t mask = luaL_checkinteger(L, 3);
   luaL_checktype(L, 4, LUA_TFUNCTION);
 
   int watch_fd = inotify_add_watch(wd->fd, path, mask);
@@ -155,12 +155,23 @@ static const luaL_Reg lib[] = {{"init", l_init}, {NULL, NULL}};
 
 int luaopen_watchdog(lua_State *L) {
   luaL_newmetatable(L, WATCHDOG_MT);
+#if LUA_VERSION_NUM > 501
   luaL_setfuncs(L, methods, 0);
+#else
+  luaL_register(L, NULL, methods);
+#endif
+  // luaL_setfuncs(L, methods, 0);
   lua_pushvalue(L, -1);
   lua_setfield(L, -2, "__index");
   lua_pop(L, 1);
 
-  luaL_newlib(L, lib);
+  // luaL_newlib(L, lib);
+  lua_newtable(L);
+#if LUA_VERSION_NUM > 501
+  luaL_setfuncs(L, lib, 0);
+#else
+  luaL_register(L, NULL, lib);
+#endif
 
   ADD_CONST(L, IN_ACCESS);
   ADD_CONST(L, IN_MODIFY);

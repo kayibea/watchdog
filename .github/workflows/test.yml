@@ -23,4 +23,8 @@ jobs:
         run: luarocks make
 
       - name: Test
-        run: luarocks test
+        run: |
+          luarocks install bit32
+          luarocks install busted
+          luarocks install penlight
+          luarocks make

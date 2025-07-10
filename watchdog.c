@@ -12,6 +12,10 @@
 #include <sys/inotify.h>
 #include <unistd.h>
 
+#ifndef LUA_OK
+#define LUA_OK 0
+#endif
+
 #define WATCHDOG_MT "watchdog"
 #define EVENT_BUF_LEN (1024 * (sizeof(struct inotify_event) + 256))
 

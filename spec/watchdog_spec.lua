@@ -1,6 +1,7 @@
 local dir = require("pl.dir")
 local path = require("pl.path")
 local watchdog = require("watchdog")
+local bit = require("bit32")
 
 local tmpdir = "/tmp/watchdog_test"
 
@@ -163,9 +164,9 @@ describe("watchdog C module", function()
     io.open(from_path, "w"):close()
 
     wd:add(tmpdir, watchdog.IN_MOVED_FROM + watchdog.IN_MOVED_TO, function(ev)
-      if ev.name == from and ev.mask & watchdog.IN_MOVED_FROM ~= 0 then
+      if ev.name == from and bit.band(ev.mask, watchdog.IN_MOVED_FROM) ~= 0 then
         moved_from = true
-      elseif ev.name == to and ev.mask & watchdog.IN_MOVED_TO ~= 0 then
+      elseif ev.name == to and bit.band(ev.mask, watchdog.IN_MOVED_TO) ~= 0 then
         moved_to = true
       end
     end)
@@ -187,10 +188,13 @@ describe("watchdog C module", function()
     local opened, closed = false, false
 
     io.open(fullpath, "w"):close()
-
     wd:add(tmpdir, watchdog.IN_OPEN + watchdog.IN_CLOSE_WRITE, function(ev)
-      if ev.name == fname and ev.mask & watchdog.IN_OPEN ~= 0 then opened = true end
-      if ev.name == fname and ev.mask & watchdog.IN_CLOSE_WRITE ~= 0 then closed = true end
+      if ev.name == fname and bit.band(ev.mask, watchdog.IN_OPEN) ~= 0 then
+        opened = true
+      end
+      if ev.name == fname and bit.band(ev.mask, watchdog.IN_CLOSE_WRITE) ~= 0 then
+        closed = true
+      end
     end)
 
     local f = io.open(fullpath, "a")

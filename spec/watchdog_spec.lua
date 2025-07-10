@@ -1,7 +1,7 @@
+local bit = bit32 or require("bit32")
 local dir = require("pl.dir")
 local path = require("pl.path")
 local watchdog = require("watchdog")
-local bit = bit32 or require("bit32")
 
 local tmpdir = "/tmp/watchdog_test"
 

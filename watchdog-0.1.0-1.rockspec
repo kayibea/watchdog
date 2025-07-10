@@ -22,6 +22,7 @@ supported_platforms = {
 }
 dependencies = {}
 test_dependencies = {
+  "bit32 >= 5.3.5.1-1",
   "busted >= 2.2.0-1",
   "penlight >= 1.14.0-3"
 }

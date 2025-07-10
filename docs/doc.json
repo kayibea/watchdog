@@ -1,0 +1,1671 @@
+[
+    {
+        "defines": [
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "Inotify event data passed to callbacks.",
+                "file": ".",
+                "finish": [
+                    3,
+                    22
+                ],
+                "rawdesc": "Inotify event data passed to callbacks.",
+                "start": [
+                    3,
+                    10
+                ],
+                "type": "doc.class",
+                "view": "InotifyEvent",
+                "visible": "public"
+            }
+        ],
+        "fields": [
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "Unique ID for related events (e.g., rename)",
+                "extends": {
+                    "finish": [
+                        8,
+                        24
+                    ],
+                    "start": [
+                        8,
+                        17
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                8,
+                                24
+                            ],
+                            "start": [
+                                8,
+                                17
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    8,
+                    24
+                ],
+                "name": "cookie",
+                "rawdesc": "Unique ID for related events (e.g., rename)",
+                "start": [
+                    8,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "Length of name (internal)",
+                "extends": {
+                    "finish": [
+                        5,
+                        21
+                    ],
+                    "start": [
+                        5,
+                        14
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                5,
+                                21
+                            ],
+                            "start": [
+                                5,
+                                14
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    5,
+                    21
+                ],
+                "name": "len",
+                "rawdesc": "Length of name (internal)",
+                "start": [
+                    5,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "Bitmask of events",
+                "extends": {
+                    "finish": [
+                        7,
+                        22
+                    ],
+                    "start": [
+                        7,
+                        15
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                7,
+                                22
+                            ],
+                            "start": [
+                                7,
+                                15
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    7,
+                    22
+                ],
+                "name": "mask",
+                "rawdesc": "Bitmask of events",
+                "start": [
+                    7,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "Name of the file or directory affected",
+                "extends": {
+                    "finish": [
+                        6,
+                        22
+                    ],
+                    "start": [
+                        6,
+                        16
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                6,
+                                22
+                            ],
+                            "start": [
+                                6,
+                                16
+                            ],
+                            "type": "doc.type.name",
+                            "view": "string"
+                        }
+                    ],
+                    "view": "string?"
+                },
+                "file": ".",
+                "finish": [
+                    6,
+                    22
+                ],
+                "name": "name",
+                "rawdesc": "Name of the file or directory affected",
+                "start": [
+                    6,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "string?",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "Watch descriptor",
+                "extends": {
+                    "finish": [
+                        4,
+                        20
+                    ],
+                    "start": [
+                        4,
+                        13
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                4,
+                                20
+                            ],
+                            "start": [
+                                4,
+                                13
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    4,
+                    20
+                ],
+                "name": "wd",
+                "rawdesc": "Watch descriptor",
+                "start": [
+                    4,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            }
+        ],
+        "name": "InotifyEvent",
+        "type": "type",
+        "view": "InotifyEvent"
+    },
+    {
+        "DOC": "/home/maars/code/c/watchdog/lls/library/watchdog.lua",
+        "defines": [],
+        "fields": [],
+        "name": "LuaLS",
+        "type": "luals.config"
+    },
+    {
+        "defines": [
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "Instance of a running inotify watcher.",
+                "file": ".",
+                "finish": [
+                    48,
+                    18
+                ],
+                "rawdesc": "Instance of a running inotify watcher.",
+                "start": [
+                    48,
+                    10
+                ],
+                "type": "doc.class",
+                "view": "Watchdog",
+                "visible": "public"
+            }
+        ],
+        "fields": [
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "Add a path to be watched.\n\nUsage:\n```lua\nwd:add(\"/tmp\", watchdog.IN_CREATE, function(ev)\n  print(\"File created:\", ev.name)\nend)\n```\n\n@*param* `pathname` — Path to file or directory\n\n@*param* `mask` — Bitmask of inotify event types\n\n@*param* `callback` — Callback invoked on matching events\n\n@*return* `wd` — Watch descriptor (used to remove later)",
+                "extends": {
+                    "args": [
+                        {
+                            "desc": "Instance of a running inotify watcher.",
+                            "finish": [
+                                76,
+                                8
+                            ],
+                            "name": "self",
+                            "rawdesc": "Instance of a running inotify watcher.",
+                            "start": [
+                                76,
+                                8
+                            ],
+                            "type": "self",
+                            "view": "Watchdog"
+                        },
+                        {
+                            "desc": "Path to file or directory",
+                            "finish": [
+                                76,
+                                26
+                            ],
+                            "name": "pathname",
+                            "rawdesc": "Path to file or directory",
+                            "start": [
+                                76,
+                                18
+                            ],
+                            "type": "local",
+                            "view": "string"
+                        },
+                        {
+                            "desc": "Bitmask of inotify event types",
+                            "finish": [
+                                76,
+                                32
+                            ],
+                            "name": "mask",
+                            "rawdesc": "Bitmask of inotify event types",
+                            "start": [
+                                76,
+                                28
+                            ],
+                            "type": "local",
+                            "view": "integer"
+                        },
+                        {
+                            "desc": "Callback invoked on matching events",
+                            "finish": [
+                                76,
+                                42
+                            ],
+                            "name": "callback",
+                            "rawdesc": "Callback invoked on matching events",
+                            "start": [
+                                76,
+                                34
+                            ],
+                            "type": "local",
+                            "view": "fun(ev: InotifyEvent)"
+                        }
+                    ],
+                    "desc": "Add a path to be watched.\n\nUsage:\n```lua\nwd:add(\"/tmp\", watchdog.IN_CREATE, function(ev)\n  print(\"File created:\", ev.name)\nend)\n```\n\n@*param* `pathname` — Path to file or directory\n\n@*param* `mask` — Bitmask of inotify event types\n\n@*param* `callback` — Callback invoked on matching events\n\n@*return* `wd` — Watch descriptor (used to remove later)",
+                    "finish": [
+                        76,
+                        47
+                    ],
+                    "rawdesc": "Add a path to be watched.\n\nUsage:\n```lua\nwd:add(\"/tmp\", watchdog.IN_CREATE, function(ev)\n  print(\"File created:\", ev.name)\nend)\n```",
+                    "returns": [
+                        {
+                            "desc": "Watch descriptor (used to remove later)",
+                            "name": "wd",
+                            "rawdesc": "Watch descriptor (used to remove later)",
+                            "type": "function.return",
+                            "view": "integer"
+                        }
+                    ],
+                    "start": [
+                        76,
+                        0
+                    ],
+                    "type": "function",
+                    "view": "(method) Watchdog:add(pathname: string, mask: integer, callback: fun(ev: InotifyEvent))\n  -> wd: integer"
+                },
+                "file": ".",
+                "finish": [
+                    76,
+                    17
+                ],
+                "name": "add",
+                "rawdesc": "Add a path to be watched.\n\nUsage:\n```lua\nwd:add(\"/tmp\", watchdog.IN_CREATE, function(ev)\n  print(\"File created:\", ev.name)\nend)\n```",
+                "start": [
+                    76,
+                    9
+                ],
+                "type": "setmethod",
+                "view": "function",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "Stop all monitoring and close the inotify file descriptor.\n\nThis also releases all registered callbacks.",
+                "extends": {
+                    "args": [
+                        {
+                            "desc": "Instance of a running inotify watcher.",
+                            "finish": [
+                                93,
+                                8
+                            ],
+                            "name": "self",
+                            "rawdesc": "Instance of a running inotify watcher.",
+                            "start": [
+                                93,
+                                8
+                            ],
+                            "type": "self",
+                            "view": "Watchdog"
+                        }
+                    ],
+                    "desc": "Stop all monitoring and close the inotify file descriptor.\n\nThis also releases all registered callbacks.",
+                    "finish": [
+                        93,
+                        25
+                    ],
+                    "rawdesc": "Stop all monitoring and close the inotify file descriptor.\n\nThis also releases all registered callbacks.",
+                    "start": [
+                        93,
+                        0
+                    ],
+                    "type": "function",
+                    "view": "(method) Watchdog:close()"
+                },
+                "file": ".",
+                "finish": [
+                    93,
+                    19
+                ],
+                "name": "close",
+                "rawdesc": "Stop all monitoring and close the inotify file descriptor.\n\nThis also releases all registered callbacks.",
+                "start": [
+                    93,
+                    9
+                ],
+                "type": "setmethod",
+                "view": "function",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "Polls for filesystem events and dispatches callbacks.\n\nThis blocks until an event occurs or until `timeout` expires.\n\nUsage:\n```lua\nwd:poll(100) -- Waits 100ms\n```\n\n@*param* `timeout` — Timeout in milliseconds (-1 = infinite)",
+                "extends": {
+                    "args": [
+                        {
+                            "desc": "Instance of a running inotify watcher.",
+                            "finish": [
+                                61,
+                                8
+                            ],
+                            "name": "self",
+                            "rawdesc": "Instance of a running inotify watcher.",
+                            "start": [
+                                61,
+                                8
+                            ],
+                            "type": "self",
+                            "view": "Watchdog"
+                        },
+                        {
+                            "desc": "Timeout in milliseconds (-1 = infinite)",
+                            "finish": [
+                                61,
+                                26
+                            ],
+                            "name": "timeout",
+                            "rawdesc": "Timeout in milliseconds (-1 = infinite)",
+                            "start": [
+                                61,
+                                19
+                            ],
+                            "type": "local",
+                            "view": "integer?"
+                        }
+                    ],
+                    "desc": "Polls for filesystem events and dispatches callbacks.\n\nThis blocks until an event occurs or until `timeout` expires.\n\nUsage:\n```lua\nwd:poll(100) -- Waits 100ms\n```\n\n@*param* `timeout` — Timeout in milliseconds (-1 = infinite)",
+                    "finish": [
+                        61,
+                        31
+                    ],
+                    "rawdesc": "Polls for filesystem events and dispatches callbacks.\n\nThis blocks until an event occurs or until `timeout` expires.\n\nUsage:\n```lua\nwd:poll(100) -- Waits 100ms\n```",
+                    "start": [
+                        61,
+                        0
+                    ],
+                    "type": "function",
+                    "view": "(method) Watchdog:poll(timeout?: integer)"
+                },
+                "file": ".",
+                "finish": [
+                    61,
+                    18
+                ],
+                "name": "poll",
+                "rawdesc": "Polls for filesystem events and dispatches callbacks.\n\nThis blocks until an event occurs or until `timeout` expires.\n\nUsage:\n```lua\nwd:poll(100) -- Waits 100ms\n```",
+                "start": [
+                    61,
+                    9
+                ],
+                "type": "setmethod",
+                "view": "function",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "Remove a specific watch descriptor.\n\nUsage:\n```lua\nlocal wd_id = wd:add(\"/tmp\", mask, cb)\nwd:remove(wd_id)\n```\n\n@*param* `wd` — Watch descriptor returned by `add`",
+                "extends": {
+                    "args": [
+                        {
+                            "desc": "Instance of a running inotify watcher.",
+                            "finish": [
+                                87,
+                                8
+                            ],
+                            "name": "self",
+                            "rawdesc": "Instance of a running inotify watcher.",
+                            "start": [
+                                87,
+                                8
+                            ],
+                            "type": "self",
+                            "view": "Watchdog"
+                        },
+                        {
+                            "desc": "Watch descriptor returned by `add`",
+                            "finish": [
+                                87,
+                                23
+                            ],
+                            "name": "wd",
+                            "rawdesc": "Watch descriptor returned by `add`",
+                            "start": [
+                                87,
+                                21
+                            ],
+                            "type": "local",
+                            "view": "integer"
+                        }
+                    ],
+                    "desc": "Remove a specific watch descriptor.\n\nUsage:\n```lua\nlocal wd_id = wd:add(\"/tmp\", mask, cb)\nwd:remove(wd_id)\n```\n\n@*param* `wd` — Watch descriptor returned by `add`",
+                    "finish": [
+                        87,
+                        28
+                    ],
+                    "rawdesc": "Remove a specific watch descriptor.\n\nUsage:\n```lua\nlocal wd_id = wd:add(\"/tmp\", mask, cb)\nwd:remove(wd_id)\n```",
+                    "start": [
+                        87,
+                        0
+                    ],
+                    "type": "function",
+                    "view": "(method) Watchdog:remove(wd: integer)"
+                },
+                "file": ".",
+                "finish": [
+                    87,
+                    20
+                ],
+                "name": "remove",
+                "rawdesc": "Remove a specific watch descriptor.\n\nUsage:\n```lua\nlocal wd_id = wd:add(\"/tmp\", mask, cb)\nwd:remove(wd_id)\n```",
+                "start": [
+                    87,
+                    9
+                ],
+                "type": "setmethod",
+                "view": "function",
+                "visible": "public"
+            }
+        ],
+        "name": "Watchdog",
+        "type": "type",
+        "view": "Watchdog"
+    },
+    {
+        "defines": [
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "Main module for interacting with inotify from Lua.",
+                "file": ".",
+                "finish": [
+                    11,
+                    18
+                ],
+                "rawdesc": "Main module for interacting with inotify from Lua.",
+                "start": [
+                    11,
+                    10
+                ],
+                "type": "doc.class",
+                "view": "watchdog",
+                "visible": "public"
+            }
+        ],
+        "fields": [
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        12,
+                        27
+                    ],
+                    "start": [
+                        12,
+                        20
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                12,
+                                27
+                            ],
+                            "start": [
+                                12,
+                                20
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    12,
+                    27
+                ],
+                "name": "IN_ACCESS",
+                "start": [
+                    12,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        35,
+                        31
+                    ],
+                    "start": [
+                        35,
+                        24
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                35,
+                                31
+                            ],
+                            "start": [
+                                35,
+                                24
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    35,
+                    31
+                ],
+                "name": "IN_ALL_EVENTS",
+                "start": [
+                    35,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        14,
+                        27
+                    ],
+                    "start": [
+                        14,
+                        20
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                14,
+                                27
+                            ],
+                            "start": [
+                                14,
+                                20
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    14,
+                    27
+                ],
+                "name": "IN_ATTRIB",
+                "start": [
+                    14,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        33,
+                        26
+                    ],
+                    "start": [
+                        33,
+                        19
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                33,
+                                26
+                            ],
+                            "start": [
+                                33,
+                                19
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    33,
+                    26
+                ],
+                "name": "IN_CLOSE",
+                "start": [
+                    33,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        16,
+                        34
+                    ],
+                    "start": [
+                        16,
+                        27
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                16,
+                                34
+                            ],
+                            "start": [
+                                16,
+                                27
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    16,
+                    34
+                ],
+                "name": "IN_CLOSE_NOWRITE",
+                "start": [
+                    16,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        15,
+                        32
+                    ],
+                    "start": [
+                        15,
+                        25
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                15,
+                                32
+                            ],
+                            "start": [
+                                15,
+                                25
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    15,
+                    32
+                ],
+                "name": "IN_CLOSE_WRITE",
+                "start": [
+                    15,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        20,
+                        27
+                    ],
+                    "start": [
+                        20,
+                        20
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                20,
+                                27
+                            ],
+                            "start": [
+                                20,
+                                20
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    20,
+                    27
+                ],
+                "name": "IN_CREATE",
+                "start": [
+                    20,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        21,
+                        27
+                    ],
+                    "start": [
+                        21,
+                        20
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                21,
+                                27
+                            ],
+                            "start": [
+                                21,
+                                20
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    21,
+                    27
+                ],
+                "name": "IN_DELETE",
+                "start": [
+                    21,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        22,
+                        32
+                    ],
+                    "start": [
+                        22,
+                        25
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                22,
+                                32
+                            ],
+                            "start": [
+                                22,
+                                25
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    22,
+                    32
+                ],
+                "name": "IN_DELETE_SELF",
+                "start": [
+                    22,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        28,
+                        32
+                    ],
+                    "start": [
+                        28,
+                        25
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                28,
+                                32
+                            ],
+                            "start": [
+                                28,
+                                25
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    28,
+                    32
+                ],
+                "name": "IN_DONT_FOLLOW",
+                "start": [
+                    28,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        29,
+                        32
+                    ],
+                    "start": [
+                        29,
+                        25
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                29,
+                                32
+                            ],
+                            "start": [
+                                29,
+                                25
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    29,
+                    32
+                ],
+                "name": "IN_EXCL_UNLINK",
+                "start": [
+                    29,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        26,
+                        28
+                    ],
+                    "start": [
+                        26,
+                        21
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                26,
+                                28
+                            ],
+                            "start": [
+                                26,
+                                21
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    26,
+                    28
+                ],
+                "name": "IN_IGNORED",
+                "start": [
+                    26,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        31,
+                        26
+                    ],
+                    "start": [
+                        31,
+                        19
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                31,
+                                26
+                            ],
+                            "start": [
+                                31,
+                                19
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    31,
+                    26
+                ],
+                "name": "IN_ISDIR",
+                "start": [
+                    31,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        30,
+                        29
+                    ],
+                    "start": [
+                        30,
+                        22
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                30,
+                                29
+                            ],
+                            "start": [
+                                30,
+                                22
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    30,
+                    29
+                ],
+                "name": "IN_MASK_ADD",
+                "start": [
+                    30,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        13,
+                        27
+                    ],
+                    "start": [
+                        13,
+                        20
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                13,
+                                27
+                            ],
+                            "start": [
+                                13,
+                                20
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    13,
+                    27
+                ],
+                "name": "IN_MODIFY",
+                "start": [
+                    13,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        34,
+                        25
+                    ],
+                    "start": [
+                        34,
+                        18
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                34,
+                                25
+                            ],
+                            "start": [
+                                34,
+                                18
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    34,
+                    25
+                ],
+                "name": "IN_MOVE",
+                "start": [
+                    34,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        18,
+                        31
+                    ],
+                    "start": [
+                        18,
+                        24
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                18,
+                                31
+                            ],
+                            "start": [
+                                18,
+                                24
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    18,
+                    31
+                ],
+                "name": "IN_MOVED_FROM",
+                "start": [
+                    18,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        19,
+                        29
+                    ],
+                    "start": [
+                        19,
+                        22
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                19,
+                                29
+                            ],
+                            "start": [
+                                19,
+                                22
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    19,
+                    29
+                ],
+                "name": "IN_MOVED_TO",
+                "start": [
+                    19,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        23,
+                        30
+                    ],
+                    "start": [
+                        23,
+                        23
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                23,
+                                30
+                            ],
+                            "start": [
+                                23,
+                                23
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    23,
+                    30
+                ],
+                "name": "IN_MOVE_SELF",
+                "start": [
+                    23,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        32,
+                        28
+                    ],
+                    "start": [
+                        32,
+                        21
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                32,
+                                28
+                            ],
+                            "start": [
+                                32,
+                                21
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    32,
+                    28
+                ],
+                "name": "IN_ONESHOT",
+                "start": [
+                    32,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        27,
+                        28
+                    ],
+                    "start": [
+                        27,
+                        21
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                27,
+                                28
+                            ],
+                            "start": [
+                                27,
+                                21
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    27,
+                    28
+                ],
+                "name": "IN_ONLYDIR",
+                "start": [
+                    27,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        17,
+                        25
+                    ],
+                    "start": [
+                        17,
+                        18
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                17,
+                                25
+                            ],
+                            "start": [
+                                17,
+                                18
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    17,
+                    25
+                ],
+                "name": "IN_OPEN",
+                "start": [
+                    17,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        25,
+                        31
+                    ],
+                    "start": [
+                        25,
+                        24
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                25,
+                                31
+                            ],
+                            "start": [
+                                25,
+                                24
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    25,
+                    31
+                ],
+                "name": "IN_Q_OVERFLOW",
+                "start": [
+                    25,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        24,
+                        28
+                    ],
+                    "start": [
+                        24,
+                        21
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                24,
+                                28
+                            ],
+                            "start": [
+                                24,
+                                21
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    24,
+                    28
+                ],
+                "name": "IN_UNMOUNT",
+                "start": [
+                    24,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "desc": "Initialize a new inotify watcher.\n\nUsage:\n```lua\nlocal wd = watchdog.init()\n```",
+                "extends": {
+                    "args": [],
+                    "desc": "Initialize a new inotify watcher.\n\nUsage:\n```lua\nlocal wd = watchdog.init()\n```",
+                    "finish": [
+                        45,
+                        28
+                    ],
+                    "rawdesc": "Initialize a new inotify watcher.\n\nUsage:\n```lua\nlocal wd = watchdog.init()\n```",
+                    "returns": [
+                        {
+                            "type": "function.return",
+                            "view": "Watchdog"
+                        }
+                    ],
+                    "start": [
+                        45,
+                        0
+                    ],
+                    "type": "function",
+                    "view": "function watchdog.init()\n  -> Watchdog"
+                },
+                "file": ".",
+                "finish": [
+                    45,
+                    22
+                ],
+                "name": "init",
+                "rawdesc": "Initialize a new inotify watcher.\n\nUsage:\n```lua\nlocal wd = watchdog.init()\n```",
+                "start": [
+                    45,
+                    9
+                ],
+                "type": "setfield",
+                "view": "function",
+                "visible": "public"
+            }
+        ],
+        "name": "watchdog",
+        "type": "type",
+        "view": "watchdog"
+    }
+]

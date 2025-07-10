@@ -22,8 +22,8 @@ jobs:
       - name: Build
         run: luarocks make
 
-      - name: Install test dependencies manually for 5.3+
-        if: matrix.luaVersion == '5.3' || matrix.luaVersion == '5.4'
+      - name: Install bit32 where needed
+        if: matrix.luaVersion == '5.1' || matrix.luaVersion == '5.3' || matrix.luaVersion == '5.4'
         run: luarocks install bit32
 
       - name: Test

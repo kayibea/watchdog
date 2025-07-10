@@ -111,7 +111,7 @@ static int l_poll(lua_State *L) {
     i += sizeof(struct inotify_event) + ev->len;
   }
 
-  lua_pop(L, 1);  // pop callback table
+  lua_pop(L, 1);
   return 0;
 }
 
@@ -119,6 +119,7 @@ static int l_close(lua_State *L) {
   Watchdog *wd = luaL_checkudata(L, 1, WATCHDOG_MT);
   if (wd->fd >= 0) {
     close(wd->fd);
+    luaL_unref(L, LUA_REGISTRYINDEX, wd->cb_table_ref);
     wd->fd = -1;
   }
   return 0;

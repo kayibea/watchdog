@@ -7,3 +7,4 @@
 *.so
 *.o
 script.lua
+*.rock

@@ -164,12 +164,10 @@ int luaopen_watchdog(lua_State *L) {
 #else
   luaL_register(L, NULL, methods);
 #endif
-  // luaL_setfuncs(L, methods, 0);
   lua_pushvalue(L, -1);
   lua_setfield(L, -2, "__index");
   lua_pop(L, 1);
 
-  // luaL_newlib(L, lib);
   lua_newtable(L);
 #if LUA_VERSION_NUM > 501
   luaL_setfuncs(L, lib, 0);

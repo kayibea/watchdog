@@ -20,8 +20,11 @@ A fast and minimal Lua module (written in C) that wraps the Linux `inotify` API,
 supported_platforms = {
   "linux"
 }
-dependencies = {}
+dependencies = {
+  "lua >= 5.1"
+}
 test_dependencies = {
+  "bit32 >= 5.3.5.1-1",
   "busted >= 2.2.0-1",
   "penlight >= 1.14.0-3"
 }

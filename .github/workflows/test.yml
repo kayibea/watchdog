@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        luaVersion: ["5.1", "5.2", "5.3", "5.4", "luajit"]
+        luaVersion: ["5.1", "5.2", "5.3", "5.4"]
 
     steps:
       - uses: actions/checkout@main
@@ -23,14 +23,8 @@ jobs:
         run: luarocks make
 
       - name: Install bit32 where needed
-        if: matrix.luaVersion == '5.1' || matrix.luaVersion == '5.3' || matrix.luaVersion == '5.4'
+        if: matrix.luaVersion != '5.2'
         run: luarocks install bit32
-
-      - name: Manually install test dependencies for LuaJIT
-        if: matrix.luaVersion == 'luajit'
-        run: |
-          luarocks install busted
-          luarocks install penlight
 
       - name: Test
         run: |

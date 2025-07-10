@@ -24,7 +24,7 @@ luarocks install watchdog
 ```
 
 ```lua
-local posix = require("posix")
+local signal = require("posix.signal")
 local watchdog = require("watchdog")
 
 local wd = watchdog.init()
@@ -34,7 +34,6 @@ wd:add("/tmp", watchdog.IN_CREATE | watchdog.IN_DELETE, function(ev)
 end)
 
 local running = true
-local signal = require("posix.signal")
 
 signal.signal(signal.SIGINT, function()
   print("\nShutting down...")
@@ -43,7 +42,6 @@ end)
 
 while running do
   wd:poll()
-  posix.sleep(1)
 end
 
 wd:close()

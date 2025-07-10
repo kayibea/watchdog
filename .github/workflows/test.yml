@@ -1,0 +1,22 @@
+name: test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        luaVersion: ["5.1", "5.2", "5.3", "5.4", "luajit"]
+
+    steps:
+    - uses: actions/checkout@main
+    - uses: leafo/gh-actions-lua@v11
+      with:
+        luaVersion: ${{ matrix.luaVersion }}
+    - name: build
+      run: |
+        luarocks make
+
+    - name: test
+      run: |
+        luarocks test

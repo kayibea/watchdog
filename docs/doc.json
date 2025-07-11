@@ -24,25 +24,25 @@
             {
                 "async": false,
                 "deprecated": false,
-                "desc": "Unique ID for related events (e.g., rename)",
+                "desc": "Unique ID for related events (e.g. renames)",
                 "extends": {
                     "finish": [
-                        8,
+                        6,
                         24
                     ],
                     "start": [
-                        8,
+                        6,
                         17
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                8,
+                                6,
                                 24
                             ],
                             "start": [
-                                8,
+                                6,
                                 17
                             ],
                             "type": "doc.type.name",
@@ -53,13 +53,13 @@
                 },
                 "file": ".",
                 "finish": [
-                    8,
+                    6,
                     24
                 ],
                 "name": "cookie",
-                "rawdesc": "Unique ID for related events (e.g., rename)",
+                "rawdesc": "Unique ID for related events (e.g. renames)",
                 "start": [
-                    8,
+                    6,
                     10
                 ],
                 "type": "doc.field",
@@ -69,70 +69,25 @@
             {
                 "async": false,
                 "deprecated": false,
-                "desc": "Length of name (internal)",
+                "desc": "Bitmask of inotify events",
                 "extends": {
                     "finish": [
                         5,
-                        21
-                    ],
-                    "start": [
-                        5,
-                        14
-                    ],
-                    "type": "doc.type",
-                    "types": [
-                        {
-                            "finish": [
-                                5,
-                                21
-                            ],
-                            "start": [
-                                5,
-                                14
-                            ],
-                            "type": "doc.type.name",
-                            "view": "integer"
-                        }
-                    ],
-                    "view": "integer"
-                },
-                "file": ".",
-                "finish": [
-                    5,
-                    21
-                ],
-                "name": "len",
-                "rawdesc": "Length of name (internal)",
-                "start": [
-                    5,
-                    10
-                ],
-                "type": "doc.field",
-                "view": "integer",
-                "visible": "public"
-            },
-            {
-                "async": false,
-                "deprecated": false,
-                "desc": "Bitmask of events",
-                "extends": {
-                    "finish": [
-                        7,
                         22
                     ],
                     "start": [
-                        7,
+                        5,
                         15
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                7,
+                                5,
                                 22
                             ],
                             "start": [
-                                7,
+                                5,
                                 15
                             ],
                             "type": "doc.type.name",
@@ -143,13 +98,13 @@
                 },
                 "file": ".",
                 "finish": [
-                    7,
+                    5,
                     22
                 ],
                 "name": "mask",
-                "rawdesc": "Bitmask of events",
+                "rawdesc": "Bitmask of inotify events",
                 "start": [
-                    7,
+                    5,
                     10
                 ],
                 "type": "doc.field",
@@ -159,46 +114,46 @@
             {
                 "async": false,
                 "deprecated": false,
-                "desc": "Name of the file or directory affected",
+                "desc": "Name of the file/directory affected (may be empty for some events)",
                 "extends": {
                     "finish": [
-                        6,
-                        22
+                        7,
+                        21
                     ],
                     "start": [
-                        6,
-                        16
+                        7,
+                        15
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                6,
-                                22
+                                7,
+                                21
                             ],
                             "start": [
-                                6,
-                                16
+                                7,
+                                15
                             ],
                             "type": "doc.type.name",
                             "view": "string"
                         }
                     ],
-                    "view": "string?"
+                    "view": "string"
                 },
                 "file": ".",
                 "finish": [
-                    6,
-                    22
+                    7,
+                    21
                 ],
                 "name": "name",
-                "rawdesc": "Name of the file or directory affected",
+                "rawdesc": "Name of the file/directory affected (may be empty for some events)",
                 "start": [
-                    6,
+                    7,
                     10
                 ],
                 "type": "doc.field",
-                "view": "string?",
+                "view": "string",
                 "visible": "public"
             },
             {
@@ -266,12 +221,12 @@
                 "desc": "Instance of a running inotify watcher.",
                 "file": ".",
                 "finish": [
-                    48,
+                    50,
                     18
                 ],
                 "rawdesc": "Instance of a running inotify watcher.",
                 "start": [
-                    48,
+                    50,
                     10
                 ],
                 "type": "doc.class",
@@ -283,101 +238,111 @@
             {
                 "async": false,
                 "deprecated": false,
-                "desc": "Add a path to be watched.\n\nUsage:\n```lua\nwd:add(\"/tmp\", watchdog.IN_CREATE, function(ev)\n  print(\"File created:\", ev.name)\nend)\n```\n\n@*param* `pathname` — Path to file or directory\n\n@*param* `mask` — Bitmask of inotify event types\n\n@*param* `callback` — Callback invoked on matching events\n\n@*return* `wd` — Watch descriptor (used to remove later)",
+                "desc": "Add a path to be watched for changes.\n\nUsage:\n```lua\nlocal watch_fd, errmsg, errno = wd:add(\"/tmp\", watchdog.IN_CREATE, function(ev)\n  print(\"Created:\", ev.name)\nend)\n```\n\n@*param* `pathname` — Path to watch (directory or file)\n\n@*param* `mask` — Bitmask of inotify event flags\n\n@*param* `callback` — Function called when event fires\n\n@*return* `wd` — Watch descriptor or `nil` on error\n\n@*return* `errmsg`\n\n@*return* `errno`",
                 "extends": {
                     "args": [
                         {
                             "desc": "Instance of a running inotify watcher.",
                             "finish": [
-                                76,
+                                84,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": "Instance of a running inotify watcher.",
                             "start": [
-                                76,
+                                84,
                                 8
                             ],
                             "type": "self",
                             "view": "Watchdog"
                         },
                         {
-                            "desc": "Path to file or directory",
+                            "desc": "Path to watch (directory or file)",
                             "finish": [
-                                76,
+                                84,
                                 26
                             ],
                             "name": "pathname",
-                            "rawdesc": "Path to file or directory",
+                            "rawdesc": "Path to watch (directory or file)",
                             "start": [
-                                76,
+                                84,
                                 18
                             ],
                             "type": "local",
                             "view": "string"
                         },
                         {
-                            "desc": "Bitmask of inotify event types",
+                            "desc": "Bitmask of inotify event flags",
                             "finish": [
-                                76,
+                                84,
                                 32
                             ],
                             "name": "mask",
-                            "rawdesc": "Bitmask of inotify event types",
+                            "rawdesc": "Bitmask of inotify event flags",
                             "start": [
-                                76,
+                                84,
                                 28
                             ],
                             "type": "local",
                             "view": "integer"
                         },
                         {
-                            "desc": "Callback invoked on matching events",
+                            "desc": "Function called when event fires",
                             "finish": [
-                                76,
+                                84,
                                 42
                             ],
                             "name": "callback",
-                            "rawdesc": "Callback invoked on matching events",
+                            "rawdesc": "Function called when event fires",
                             "start": [
-                                76,
+                                84,
                                 34
                             ],
                             "type": "local",
                             "view": "fun(ev: InotifyEvent)"
                         }
                     ],
-                    "desc": "Add a path to be watched.\n\nUsage:\n```lua\nwd:add(\"/tmp\", watchdog.IN_CREATE, function(ev)\n  print(\"File created:\", ev.name)\nend)\n```\n\n@*param* `pathname` — Path to file or directory\n\n@*param* `mask` — Bitmask of inotify event types\n\n@*param* `callback` — Callback invoked on matching events\n\n@*return* `wd` — Watch descriptor (used to remove later)",
+                    "desc": "Add a path to be watched for changes.\n\nUsage:\n```lua\nlocal watch_fd, errmsg, errno = wd:add(\"/tmp\", watchdog.IN_CREATE, function(ev)\n  print(\"Created:\", ev.name)\nend)\n```\n\n@*param* `pathname` — Path to watch (directory or file)\n\n@*param* `mask` — Bitmask of inotify event flags\n\n@*param* `callback` — Function called when event fires\n\n@*return* `wd` — Watch descriptor or `nil` on error\n\n@*return* `errmsg`\n\n@*return* `errno`",
                     "finish": [
-                        76,
+                        84,
                         47
                     ],
-                    "rawdesc": "Add a path to be watched.\n\nUsage:\n```lua\nwd:add(\"/tmp\", watchdog.IN_CREATE, function(ev)\n  print(\"File created:\", ev.name)\nend)\n```",
+                    "rawdesc": "Add a path to be watched for changes.\n\nUsage:\n```lua\nlocal watch_fd, errmsg, errno = wd:add(\"/tmp\", watchdog.IN_CREATE, function(ev)\n  print(\"Created:\", ev.name)\nend)\n```",
                     "returns": [
                         {
-                            "desc": "Watch descriptor (used to remove later)",
+                            "desc": "Watch descriptor or `nil` on error",
                             "name": "wd",
-                            "rawdesc": "Watch descriptor (used to remove later)",
+                            "rawdesc": "Watch descriptor or `nil` on error",
                             "type": "function.return",
-                            "view": "integer"
+                            "view": "integer?"
+                        },
+                        {
+                            "name": "errmsg",
+                            "type": "function.return",
+                            "view": "string?"
+                        },
+                        {
+                            "name": "errno",
+                            "type": "function.return",
+                            "view": "integer?"
                         }
                     ],
                     "start": [
-                        76,
+                        84,
                         0
                     ],
                     "type": "function",
-                    "view": "(method) Watchdog:add(pathname: string, mask: integer, callback: fun(ev: InotifyEvent))\n  -> wd: integer"
+                    "view": "(method) Watchdog:add(pathname: string, mask: integer, callback: fun(ev: InotifyEvent))\n  -> wd: integer?\n  2. errmsg: string?\n  3. errno: integer?"
                 },
                 "file": ".",
                 "finish": [
-                    76,
+                    84,
                     17
                 ],
                 "name": "add",
-                "rawdesc": "Add a path to be watched.\n\nUsage:\n```lua\nwd:add(\"/tmp\", watchdog.IN_CREATE, function(ev)\n  print(\"File created:\", ev.name)\nend)\n```",
+                "rawdesc": "Add a path to be watched for changes.\n\nUsage:\n```lua\nlocal watch_fd, errmsg, errno = wd:add(\"/tmp\", watchdog.IN_CREATE, function(ev)\n  print(\"Created:\", ev.name)\nend)\n```",
                 "start": [
-                    76,
+                    84,
                     9
                 ],
                 "type": "setmethod",
@@ -387,47 +352,65 @@
             {
                 "async": false,
                 "deprecated": false,
-                "desc": "Stop all monitoring and close the inotify file descriptor.\n\nThis also releases all registered callbacks.",
+                "desc": "Close the inotify watcher and release all callbacks.\n\nUsage:\n```lua\nwd:close()\n```\n\n@*return* — 0 on success, `nil` on error\n\n@*return* `errmsg`\n\n@*return* `errno`",
                 "extends": {
                     "args": [
                         {
                             "desc": "Instance of a running inotify watcher.",
                             "finish": [
-                                93,
+                                110,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": "Instance of a running inotify watcher.",
                             "start": [
-                                93,
+                                110,
                                 8
                             ],
                             "type": "self",
                             "view": "Watchdog"
                         }
                     ],
-                    "desc": "Stop all monitoring and close the inotify file descriptor.\n\nThis also releases all registered callbacks.",
+                    "desc": "Close the inotify watcher and release all callbacks.\n\nUsage:\n```lua\nwd:close()\n```\n\n@*return* — 0 on success, `nil` on error\n\n@*return* `errmsg`\n\n@*return* `errno`",
                     "finish": [
-                        93,
+                        110,
                         25
                     ],
-                    "rawdesc": "Stop all monitoring and close the inotify file descriptor.\n\nThis also releases all registered callbacks.",
+                    "rawdesc": "Close the inotify watcher and release all callbacks.\n\nUsage:\n```lua\nwd:close()\n```",
+                    "returns": [
+                        {
+                            "desc": "0 on success, `nil` on error",
+                            "rawdesc": "0 on success, `nil` on error",
+                            "type": "function.return",
+                            "view": "integer?"
+                        },
+                        {
+                            "name": "errmsg",
+                            "type": "function.return",
+                            "view": "string?"
+                        },
+                        {
+                            "name": "errno",
+                            "type": "function.return",
+                            "view": "integer?"
+                        }
+                    ],
                     "start": [
-                        93,
+                        110,
                         0
                     ],
                     "type": "function",
-                    "view": "(method) Watchdog:close()"
+                    "view": "(method) Watchdog:close()\n  -> integer?\n  2. errmsg: string?\n  3. errno: integer?"
                 },
                 "file": ".",
                 "finish": [
-                    93,
+                    110,
                     19
                 ],
                 "name": "close",
-                "rawdesc": "Stop all monitoring and close the inotify file descriptor.\n\nThis also releases all registered callbacks.",
+                "rawdesc": "Close the inotify watcher and release all callbacks.\n\nUsage:\n```lua\nwd:close()\n```",
                 "start": [
-                    93,
+                    110,
                     9
                 ],
                 "type": "setmethod",
@@ -437,62 +420,80 @@
             {
                 "async": false,
                 "deprecated": false,
-                "desc": "Polls for filesystem events and dispatches callbacks.\n\nThis blocks until an event occurs or until `timeout` expires.\n\nUsage:\n```lua\nwd:poll(100) -- Waits 100ms\n```\n\n@*param* `timeout` — Timeout in milliseconds (-1 = infinite)",
+                "desc": "Poll for filesystem events and dispatch callbacks.\n\nBlocks until events are available or `timeout` expires.\n\nUsage:\n```lua\nlocal ok, errmsg, errno = wd:poll(500)\nif not ok then error(errmsg) end\n```\n\n@*param* `timeout` — Timeout in milliseconds (-1 = infinite). Optional.\n\n@*return* — Number of events processed or 0 on timeout\n\n@*return* `errmsg`\n\n@*return* `errno`",
                 "extends": {
                     "args": [
                         {
                             "desc": "Instance of a running inotify watcher.",
                             "finish": [
-                                61,
+                                67,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": "Instance of a running inotify watcher.",
                             "start": [
-                                61,
+                                67,
                                 8
                             ],
                             "type": "self",
                             "view": "Watchdog"
                         },
                         {
-                            "desc": "Timeout in milliseconds (-1 = infinite)",
+                            "desc": "Timeout in milliseconds (-1 = infinite). Optional.",
                             "finish": [
-                                61,
+                                67,
                                 26
                             ],
                             "name": "timeout",
-                            "rawdesc": "Timeout in milliseconds (-1 = infinite)",
+                            "rawdesc": "Timeout in milliseconds (-1 = infinite). Optional.",
                             "start": [
-                                61,
+                                67,
                                 19
                             ],
                             "type": "local",
                             "view": "integer?"
                         }
                     ],
-                    "desc": "Polls for filesystem events and dispatches callbacks.\n\nThis blocks until an event occurs or until `timeout` expires.\n\nUsage:\n```lua\nwd:poll(100) -- Waits 100ms\n```\n\n@*param* `timeout` — Timeout in milliseconds (-1 = infinite)",
+                    "desc": "Poll for filesystem events and dispatch callbacks.\n\nBlocks until events are available or `timeout` expires.\n\nUsage:\n```lua\nlocal ok, errmsg, errno = wd:poll(500)\nif not ok then error(errmsg) end\n```\n\n@*param* `timeout` — Timeout in milliseconds (-1 = infinite). Optional.\n\n@*return* — Number of events processed or 0 on timeout\n\n@*return* `errmsg`\n\n@*return* `errno`",
                     "finish": [
-                        61,
+                        67,
                         31
                     ],
-                    "rawdesc": "Polls for filesystem events and dispatches callbacks.\n\nThis blocks until an event occurs or until `timeout` expires.\n\nUsage:\n```lua\nwd:poll(100) -- Waits 100ms\n```",
+                    "rawdesc": "Poll for filesystem events and dispatch callbacks.\n\nBlocks until events are available or `timeout` expires.\n\nUsage:\n```lua\nlocal ok, errmsg, errno = wd:poll(500)\nif not ok then error(errmsg) end\n```",
+                    "returns": [
+                        {
+                            "desc": "Number of events processed or 0 on timeout",
+                            "rawdesc": "Number of events processed or 0 on timeout",
+                            "type": "function.return",
+                            "view": "integer?"
+                        },
+                        {
+                            "name": "errmsg",
+                            "type": "function.return",
+                            "view": "string?"
+                        },
+                        {
+                            "name": "errno",
+                            "type": "function.return",
+                            "view": "integer?"
+                        }
+                    ],
                     "start": [
-                        61,
+                        67,
                         0
                     ],
                     "type": "function",
-                    "view": "(method) Watchdog:poll(timeout?: integer)"
+                    "view": "(method) Watchdog:poll(timeout?: integer)\n  -> integer?\n  2. errmsg: string?\n  3. errno: integer?"
                 },
                 "file": ".",
                 "finish": [
-                    61,
+                    67,
                     18
                 ],
                 "name": "poll",
-                "rawdesc": "Polls for filesystem events and dispatches callbacks.\n\nThis blocks until an event occurs or until `timeout` expires.\n\nUsage:\n```lua\nwd:poll(100) -- Waits 100ms\n```",
+                "rawdesc": "Poll for filesystem events and dispatch callbacks.\n\nBlocks until events are available or `timeout` expires.\n\nUsage:\n```lua\nlocal ok, errmsg, errno = wd:poll(500)\nif not ok then error(errmsg) end\n```",
                 "start": [
-                    61,
+                    67,
                     9
                 ],
                 "type": "setmethod",
@@ -502,62 +503,80 @@
             {
                 "async": false,
                 "deprecated": false,
-                "desc": "Remove a specific watch descriptor.\n\nUsage:\n```lua\nlocal wd_id = wd:add(\"/tmp\", mask, cb)\nwd:remove(wd_id)\n```\n\n@*param* `wd` — Watch descriptor returned by `add`",
+                "desc": "Remove a watch from a given descriptor.\n\nUsage:\n```lua\nlocal ok, errmsg, errno = wd:remove(wd_id)\nif not ok then error(errmsg) end\n```\n\n@*param* `wd` — Watch descriptor previously returned by `add`\n\n@*return* — 0 on success, `nil` on error\n\n@*return* `errmsg`\n\n@*return* `errno`",
                 "extends": {
                     "args": [
                         {
                             "desc": "Instance of a running inotify watcher.",
                             "finish": [
-                                87,
+                                98,
                                 8
                             ],
                             "name": "self",
                             "rawdesc": "Instance of a running inotify watcher.",
                             "start": [
-                                87,
+                                98,
                                 8
                             ],
                             "type": "self",
                             "view": "Watchdog"
                         },
                         {
-                            "desc": "Watch descriptor returned by `add`",
+                            "desc": "Watch descriptor previously returned by `add`",
                             "finish": [
-                                87,
+                                98,
                                 23
                             ],
                             "name": "wd",
-                            "rawdesc": "Watch descriptor returned by `add`",
+                            "rawdesc": "Watch descriptor previously returned by `add`",
                             "start": [
-                                87,
+                                98,
                                 21
                             ],
                             "type": "local",
                             "view": "integer"
                         }
                     ],
-                    "desc": "Remove a specific watch descriptor.\n\nUsage:\n```lua\nlocal wd_id = wd:add(\"/tmp\", mask, cb)\nwd:remove(wd_id)\n```\n\n@*param* `wd` — Watch descriptor returned by `add`",
+                    "desc": "Remove a watch from a given descriptor.\n\nUsage:\n```lua\nlocal ok, errmsg, errno = wd:remove(wd_id)\nif not ok then error(errmsg) end\n```\n\n@*param* `wd` — Watch descriptor previously returned by `add`\n\n@*return* — 0 on success, `nil` on error\n\n@*return* `errmsg`\n\n@*return* `errno`",
                     "finish": [
-                        87,
+                        98,
                         28
                     ],
-                    "rawdesc": "Remove a specific watch descriptor.\n\nUsage:\n```lua\nlocal wd_id = wd:add(\"/tmp\", mask, cb)\nwd:remove(wd_id)\n```",
+                    "rawdesc": "Remove a watch from a given descriptor.\n\nUsage:\n```lua\nlocal ok, errmsg, errno = wd:remove(wd_id)\nif not ok then error(errmsg) end\n```",
+                    "returns": [
+                        {
+                            "desc": "0 on success, `nil` on error",
+                            "rawdesc": "0 on success, `nil` on error",
+                            "type": "function.return",
+                            "view": "integer?"
+                        },
+                        {
+                            "name": "errmsg",
+                            "type": "function.return",
+                            "view": "string?"
+                        },
+                        {
+                            "name": "errno",
+                            "type": "function.return",
+                            "view": "integer?"
+                        }
+                    ],
                     "start": [
-                        87,
+                        98,
                         0
                     ],
                     "type": "function",
-                    "view": "(method) Watchdog:remove(wd: integer)"
+                    "view": "(method) Watchdog:remove(wd: integer)\n  -> integer?\n  2. errmsg: string?\n  3. errno: integer?"
                 },
                 "file": ".",
                 "finish": [
-                    87,
+                    98,
                     20
                 ],
                 "name": "remove",
-                "rawdesc": "Remove a specific watch descriptor.\n\nUsage:\n```lua\nlocal wd_id = wd:add(\"/tmp\", mask, cb)\nwd:remove(wd_id)\n```",
+                "rawdesc": "Remove a watch from a given descriptor.\n\nUsage:\n```lua\nlocal ok, errmsg, errno = wd:remove(wd_id)\nif not ok then error(errmsg) end\n```",
                 "start": [
-                    87,
+                    98,
                     9
                 ],
                 "type": "setmethod",
@@ -577,12 +596,12 @@
                 "desc": "Main module for interacting with inotify from Lua.",
                 "file": ".",
                 "finish": [
-                    11,
+                    10,
                     18
                 ],
                 "rawdesc": "Main module for interacting with inotify from Lua.",
                 "start": [
-                    11,
+                    10,
                     10
                 ],
                 "type": "doc.class",
@@ -596,22 +615,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        12,
+                        11,
                         27
                     ],
                     "start": [
-                        12,
+                        11,
                         20
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                12,
+                                11,
                                 27
                             ],
                             "start": [
-                                12,
+                                11,
                                 20
                             ],
                             "type": "doc.type.name",
@@ -622,12 +641,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    12,
+                    11,
                     27
                 ],
                 "name": "IN_ACCESS",
                 "start": [
-                    12,
+                    11,
                     10
                 ],
                 "type": "doc.field",
@@ -639,22 +658,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        35,
+                        34,
                         31
                     ],
                     "start": [
-                        35,
+                        34,
                         24
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                35,
+                                34,
                                 31
                             ],
                             "start": [
-                                35,
+                                34,
                                 24
                             ],
                             "type": "doc.type.name",
@@ -665,12 +684,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    35,
+                    34,
                     31
                 ],
                 "name": "IN_ALL_EVENTS",
                 "start": [
-                    35,
+                    34,
                     10
                 ],
                 "type": "doc.field",
@@ -682,22 +701,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        14,
+                        13,
                         27
                     ],
                     "start": [
-                        14,
+                        13,
                         20
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                14,
+                                13,
                                 27
                             ],
                             "start": [
-                                14,
+                                13,
                                 20
                             ],
                             "type": "doc.type.name",
@@ -708,12 +727,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    14,
+                    13,
                     27
                 ],
                 "name": "IN_ATTRIB",
                 "start": [
-                    14,
+                    13,
                     10
                 ],
                 "type": "doc.field",
@@ -725,22 +744,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        33,
+                        32,
                         26
                     ],
                     "start": [
-                        33,
+                        32,
                         19
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                33,
+                                32,
                                 26
                             ],
                             "start": [
-                                33,
+                                32,
                                 19
                             ],
                             "type": "doc.type.name",
@@ -751,12 +770,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    33,
+                    32,
                     26
                 ],
                 "name": "IN_CLOSE",
                 "start": [
-                    33,
+                    32,
                     10
                 ],
                 "type": "doc.field",
@@ -768,22 +787,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        16,
+                        15,
                         34
                     ],
                     "start": [
-                        16,
+                        15,
                         27
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                16,
+                                15,
                                 34
                             ],
                             "start": [
-                                16,
+                                15,
                                 27
                             ],
                             "type": "doc.type.name",
@@ -794,12 +813,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    16,
+                    15,
                     34
                 ],
                 "name": "IN_CLOSE_NOWRITE",
                 "start": [
-                    16,
+                    15,
                     10
                 ],
                 "type": "doc.field",
@@ -811,22 +830,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        15,
+                        14,
                         32
                     ],
                     "start": [
-                        15,
+                        14,
                         25
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                15,
+                                14,
                                 32
                             ],
                             "start": [
-                                15,
+                                14,
                                 25
                             ],
                             "type": "doc.type.name",
@@ -837,12 +856,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    15,
+                    14,
                     32
                 ],
                 "name": "IN_CLOSE_WRITE",
                 "start": [
-                    15,
+                    14,
                     10
                 ],
                 "type": "doc.field",
@@ -854,22 +873,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        20,
+                        19,
                         27
                     ],
                     "start": [
-                        20,
+                        19,
                         20
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                20,
+                                19,
                                 27
                             ],
                             "start": [
-                                20,
+                                19,
                                 20
                             ],
                             "type": "doc.type.name",
@@ -880,11 +899,54 @@
                 },
                 "file": ".",
                 "finish": [
-                    20,
+                    19,
                     27
                 ],
                 "name": "IN_CREATE",
                 "start": [
+                    19,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        20,
+                        27
+                    ],
+                    "start": [
+                        20,
+                        20
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                20,
+                                27
+                            ],
+                            "start": [
+                                20,
+                                20
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    20,
+                    27
+                ],
+                "name": "IN_DELETE",
+                "start": [
                     20,
                     10
                 ],
@@ -898,64 +960,21 @@
                 "extends": {
                     "finish": [
                         21,
-                        27
-                    ],
-                    "start": [
-                        21,
-                        20
-                    ],
-                    "type": "doc.type",
-                    "types": [
-                        {
-                            "finish": [
-                                21,
-                                27
-                            ],
-                            "start": [
-                                21,
-                                20
-                            ],
-                            "type": "doc.type.name",
-                            "view": "integer"
-                        }
-                    ],
-                    "view": "integer"
-                },
-                "file": ".",
-                "finish": [
-                    21,
-                    27
-                ],
-                "name": "IN_DELETE",
-                "start": [
-                    21,
-                    10
-                ],
-                "type": "doc.field",
-                "view": "integer",
-                "visible": "public"
-            },
-            {
-                "async": false,
-                "deprecated": false,
-                "extends": {
-                    "finish": [
-                        22,
                         32
                     ],
                     "start": [
-                        22,
+                        21,
                         25
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                22,
+                                21,
                                 32
                             ],
                             "start": [
-                                22,
+                                21,
                                 25
                             ],
                             "type": "doc.type.name",
@@ -966,12 +985,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    22,
+                    21,
                     32
                 ],
                 "name": "IN_DELETE_SELF",
                 "start": [
-                    22,
+                    21,
                     10
                 ],
                 "type": "doc.field",
@@ -983,22 +1002,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        28,
+                        27,
                         32
                     ],
                     "start": [
-                        28,
+                        27,
                         25
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                28,
+                                27,
                                 32
                             ],
                             "start": [
-                                28,
+                                27,
                                 25
                             ],
                             "type": "doc.type.name",
@@ -1009,11 +1028,54 @@
                 },
                 "file": ".",
                 "finish": [
-                    28,
+                    27,
                     32
                 ],
                 "name": "IN_DONT_FOLLOW",
                 "start": [
+                    27,
+                    10
+                ],
+                "type": "doc.field",
+                "view": "integer",
+                "visible": "public"
+            },
+            {
+                "async": false,
+                "deprecated": false,
+                "extends": {
+                    "finish": [
+                        28,
+                        32
+                    ],
+                    "start": [
+                        28,
+                        25
+                    ],
+                    "type": "doc.type",
+                    "types": [
+                        {
+                            "finish": [
+                                28,
+                                32
+                            ],
+                            "start": [
+                                28,
+                                25
+                            ],
+                            "type": "doc.type.name",
+                            "view": "integer"
+                        }
+                    ],
+                    "view": "integer"
+                },
+                "file": ".",
+                "finish": [
+                    28,
+                    32
+                ],
+                "name": "IN_EXCL_UNLINK",
+                "start": [
                     28,
                     10
                 ],
@@ -1026,65 +1088,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        29,
-                        32
-                    ],
-                    "start": [
-                        29,
-                        25
-                    ],
-                    "type": "doc.type",
-                    "types": [
-                        {
-                            "finish": [
-                                29,
-                                32
-                            ],
-                            "start": [
-                                29,
-                                25
-                            ],
-                            "type": "doc.type.name",
-                            "view": "integer"
-                        }
-                    ],
-                    "view": "integer"
-                },
-                "file": ".",
-                "finish": [
-                    29,
-                    32
-                ],
-                "name": "IN_EXCL_UNLINK",
-                "start": [
-                    29,
-                    10
-                ],
-                "type": "doc.field",
-                "view": "integer",
-                "visible": "public"
-            },
-            {
-                "async": false,
-                "deprecated": false,
-                "extends": {
-                    "finish": [
-                        26,
+                        25,
                         28
                     ],
                     "start": [
-                        26,
+                        25,
                         21
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                26,
+                                25,
                                 28
                             ],
                             "start": [
-                                26,
+                                25,
                                 21
                             ],
                             "type": "doc.type.name",
@@ -1095,12 +1114,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    26,
+                    25,
                     28
                 ],
                 "name": "IN_IGNORED",
                 "start": [
-                    26,
+                    25,
                     10
                 ],
                 "type": "doc.field",
@@ -1112,22 +1131,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        31,
+                        30,
                         26
                     ],
                     "start": [
-                        31,
+                        30,
                         19
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                31,
+                                30,
                                 26
                             ],
                             "start": [
-                                31,
+                                30,
                                 19
                             ],
                             "type": "doc.type.name",
@@ -1138,12 +1157,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    31,
+                    30,
                     26
                 ],
                 "name": "IN_ISDIR",
                 "start": [
-                    31,
+                    30,
                     10
                 ],
                 "type": "doc.field",
@@ -1155,22 +1174,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        30,
+                        29,
                         29
                     ],
                     "start": [
-                        30,
+                        29,
                         22
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                30,
+                                29,
                                 29
                             ],
                             "start": [
-                                30,
+                                29,
                                 22
                             ],
                             "type": "doc.type.name",
@@ -1181,12 +1200,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    30,
+                    29,
                     29
                 ],
                 "name": "IN_MASK_ADD",
                 "start": [
-                    30,
+                    29,
                     10
                 ],
                 "type": "doc.field",
@@ -1198,22 +1217,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        13,
+                        12,
                         27
                     ],
                     "start": [
-                        13,
+                        12,
                         20
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                13,
+                                12,
                                 27
                             ],
                             "start": [
-                                13,
+                                12,
                                 20
                             ],
                             "type": "doc.type.name",
@@ -1224,12 +1243,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    13,
+                    12,
                     27
                 ],
                 "name": "IN_MODIFY",
                 "start": [
-                    13,
+                    12,
                     10
                 ],
                 "type": "doc.field",
@@ -1241,22 +1260,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        34,
+                        33,
                         25
                     ],
                     "start": [
-                        34,
+                        33,
                         18
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                34,
+                                33,
                                 25
                             ],
                             "start": [
-                                34,
+                                33,
                                 18
                             ],
                             "type": "doc.type.name",
@@ -1267,12 +1286,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    34,
+                    33,
                     25
                 ],
                 "name": "IN_MOVE",
                 "start": [
-                    34,
+                    33,
                     10
                 ],
                 "type": "doc.field",
@@ -1284,22 +1303,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        18,
+                        17,
                         31
                     ],
                     "start": [
-                        18,
+                        17,
                         24
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                18,
+                                17,
                                 31
                             ],
                             "start": [
-                                18,
+                                17,
                                 24
                             ],
                             "type": "doc.type.name",
@@ -1310,12 +1329,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    18,
+                    17,
                     31
                 ],
                 "name": "IN_MOVED_FROM",
                 "start": [
-                    18,
+                    17,
                     10
                 ],
                 "type": "doc.field",
@@ -1327,22 +1346,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        19,
+                        18,
                         29
                     ],
                     "start": [
-                        19,
+                        18,
                         22
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                19,
+                                18,
                                 29
                             ],
                             "start": [
-                                19,
+                                18,
                                 22
                             ],
                             "type": "doc.type.name",
@@ -1353,12 +1372,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    19,
+                    18,
                     29
                 ],
                 "name": "IN_MOVED_TO",
                 "start": [
-                    19,
+                    18,
                     10
                 ],
                 "type": "doc.field",
@@ -1370,22 +1389,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        23,
+                        22,
                         30
                     ],
                     "start": [
-                        23,
+                        22,
                         23
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                23,
+                                22,
                                 30
                             ],
                             "start": [
-                                23,
+                                22,
                                 23
                             ],
                             "type": "doc.type.name",
@@ -1396,12 +1415,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    23,
+                    22,
                     30
                 ],
                 "name": "IN_MOVE_SELF",
                 "start": [
-                    23,
+                    22,
                     10
                 ],
                 "type": "doc.field",
@@ -1413,22 +1432,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        32,
+                        31,
                         28
                     ],
                     "start": [
-                        32,
+                        31,
                         21
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                32,
+                                31,
                                 28
                             ],
                             "start": [
-                                32,
+                                31,
                                 21
                             ],
                             "type": "doc.type.name",
@@ -1439,12 +1458,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    32,
+                    31,
                     28
                 ],
                 "name": "IN_ONESHOT",
                 "start": [
-                    32,
+                    31,
                     10
                 ],
                 "type": "doc.field",
@@ -1456,22 +1475,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        27,
+                        26,
                         28
                     ],
                     "start": [
-                        27,
+                        26,
                         21
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                27,
+                                26,
                                 28
                             ],
                             "start": [
-                                27,
+                                26,
                                 21
                             ],
                             "type": "doc.type.name",
@@ -1482,12 +1501,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    27,
+                    26,
                     28
                 ],
                 "name": "IN_ONLYDIR",
                 "start": [
-                    27,
+                    26,
                     10
                 ],
                 "type": "doc.field",
@@ -1499,22 +1518,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        17,
+                        16,
                         25
                     ],
                     "start": [
-                        17,
+                        16,
                         18
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                17,
+                                16,
                                 25
                             ],
                             "start": [
-                                17,
+                                16,
                                 18
                             ],
                             "type": "doc.type.name",
@@ -1525,12 +1544,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    17,
+                    16,
                     25
                 ],
                 "name": "IN_OPEN",
                 "start": [
-                    17,
+                    16,
                     10
                 ],
                 "type": "doc.field",
@@ -1542,22 +1561,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        25,
+                        24,
                         31
                     ],
                     "start": [
-                        25,
+                        24,
                         24
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                25,
+                                24,
                                 31
                             ],
                             "start": [
-                                25,
+                                24,
                                 24
                             ],
                             "type": "doc.type.name",
@@ -1568,12 +1587,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    25,
+                    24,
                     31
                 ],
                 "name": "IN_Q_OVERFLOW",
                 "start": [
-                    25,
+                    24,
                     10
                 ],
                 "type": "doc.field",
@@ -1585,22 +1604,22 @@
                 "deprecated": false,
                 "extends": {
                     "finish": [
-                        24,
+                        23,
                         28
                     ],
                     "start": [
-                        24,
+                        23,
                         21
                     ],
                     "type": "doc.type",
                     "types": [
                         {
                             "finish": [
-                                24,
+                                23,
                                 28
                             ],
                             "start": [
-                                24,
+                                23,
                                 21
                             ],
                             "type": "doc.type.name",
@@ -1611,12 +1630,12 @@
                 },
                 "file": ".",
                 "finish": [
-                    24,
+                    23,
                     28
                 ],
                 "name": "IN_UNMOUNT",
                 "start": [
-                    24,
+                    23,
                     10
                 ],
                 "type": "doc.field",
@@ -1626,37 +1645,53 @@
             {
                 "async": false,
                 "deprecated": false,
-                "desc": "Initialize a new inotify watcher.\n\nUsage:\n```lua\nlocal wd = watchdog.init()\n```",
+                "desc": "Initialize a new inotify watcher.\n\nUsage:\n```lua\nlocal wd, errmsg, errno = watchdog.init()\nif not wd then error(errmsg) end\n```\n\n@*return* — Watchdog object or `nil` on error\n\n@*return* `errmsg` — Error message if initialization failed\n\n@*return* `errno` — System `errno` on failure",
                 "extends": {
                     "args": [],
-                    "desc": "Initialize a new inotify watcher.\n\nUsage:\n```lua\nlocal wd = watchdog.init()\n```",
+                    "desc": "Initialize a new inotify watcher.\n\nUsage:\n```lua\nlocal wd, errmsg, errno = watchdog.init()\nif not wd then error(errmsg) end\n```\n\n@*return* — Watchdog object or `nil` on error\n\n@*return* `errmsg` — Error message if initialization failed\n\n@*return* `errno` — System `errno` on failure",
                     "finish": [
-                        45,
+                        47,
                         28
                     ],
-                    "rawdesc": "Initialize a new inotify watcher.\n\nUsage:\n```lua\nlocal wd = watchdog.init()\n```",
+                    "rawdesc": "Initialize a new inotify watcher.\n\nUsage:\n```lua\nlocal wd, errmsg, errno = watchdog.init()\nif not wd then error(errmsg) end\n```",
                     "returns": [
                         {
+                            "desc": "Watchdog object or `nil` on error",
+                            "rawdesc": "Watchdog object or `nil` on error",
                             "type": "function.return",
-                            "view": "Watchdog"
+                            "view": "Watchdog?"
+                        },
+                        {
+                            "desc": "Error message if initialization failed",
+                            "name": "errmsg",
+                            "rawdesc": "Error message if initialization failed",
+                            "type": "function.return",
+                            "view": "string?"
+                        },
+                        {
+                            "desc": "System `errno` on failure",
+                            "name": "errno",
+                            "rawdesc": "System `errno` on failure",
+                            "type": "function.return",
+                            "view": "integer?"
                         }
                     ],
                     "start": [
-                        45,
+                        47,
                         0
                     ],
                     "type": "function",
-                    "view": "function watchdog.init()\n  -> Watchdog"
+                    "view": "function watchdog.init()\n  -> Watchdog?\n  2. errmsg: string?\n  3. errno: integer?"
                 },
                 "file": ".",
                 "finish": [
-                    45,
+                    47,
                     22
                 ],
                 "name": "init",
-                "rawdesc": "Initialize a new inotify watcher.\n\nUsage:\n```lua\nlocal wd = watchdog.init()\n```",
+                "rawdesc": "Initialize a new inotify watcher.\n\nUsage:\n```lua\nlocal wd, errmsg, errno = watchdog.init()\nif not wd then error(errmsg) end\n```",
                 "start": [
-                    45,
+                    47,
                     9
                 ],
                 "type": "setfield",

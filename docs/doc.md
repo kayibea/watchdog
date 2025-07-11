@@ -7,16 +7,7 @@
 integer
 ```
 
-Unique ID for related events (e.g., rename)
-
-## len
-
-
-```lua
-integer
-```
-
-Length of name (internal)
+Unique ID for related events (e.g. renames)
 
 ## mask
 
@@ -25,16 +16,16 @@ Length of name (internal)
 integer
 ```
 
-Bitmask of events
+Bitmask of inotify events
 
 ## name
 
 
 ```lua
-string?
+string
 ```
 
-Name of the file or directory affected
+Name of the file/directory affected (may be empty for some events)
 
 ## wd
 
@@ -60,71 +51,108 @@ Watch descriptor
 
 ```lua
 (method) Watchdog:add(pathname: string, mask: integer, callback: fun(ev: InotifyEvent))
-  -> wd: integer
+  -> wd: integer?
+  2. errmsg: string?
+  3. errno: integer?
 ```
 
-Add a path to be watched.
+Add a path to be watched for changes.
 
 Usage:
 ```lua
-wd:add("/tmp", watchdog.IN_CREATE, function(ev)
-  print("File created:", ev.name)
+local watch_fd, errmsg, errno = wd:add("/tmp", watchdog.IN_CREATE, function(ev)
+  print("Created:", ev.name)
 end)
 ```
 
-@*param* `pathname` — Path to file or directory
+@*param* `pathname` — Path to watch (directory or file)
 
-@*param* `mask` — Bitmask of inotify event types
+@*param* `mask` — Bitmask of inotify event flags
 
-@*param* `callback` — Callback invoked on matching events
+@*param* `callback` — Function called when event fires
 
-@*return* `wd` — Watch descriptor (used to remove later)
+@*return* `wd` — Watch descriptor or `nil` on error
+
+@*return* `errmsg`
+
+@*return* `errno`
 
 ## close
 
 
 ```lua
 (method) Watchdog:close()
+  -> integer?
+  2. errmsg: string?
+  3. errno: integer?
 ```
 
-Stop all monitoring and close the inotify file descriptor.
+Close the inotify watcher and release all callbacks.
 
-This also releases all registered callbacks.
+Usage:
+```lua
+wd:close()
+```
+
+@*return* — 0 on success, `nil` on error
+
+@*return* `errmsg`
+
+@*return* `errno`
 
 ## poll
 
 
 ```lua
 (method) Watchdog:poll(timeout?: integer)
+  -> integer?
+  2. errmsg: string?
+  3. errno: integer?
 ```
 
-Polls for filesystem events and dispatches callbacks.
+Poll for filesystem events and dispatch callbacks.
 
-This blocks until an event occurs or until `timeout` expires.
+Blocks until events are available or `timeout` expires.
 
 Usage:
 ```lua
-wd:poll(100) -- Waits 100ms
+local ok, errmsg, errno = wd:poll(500)
+if not ok then error(errmsg) end
 ```
 
-@*param* `timeout` — Timeout in milliseconds (-1 = infinite)
+@*param* `timeout` — Timeout in milliseconds (-1 = infinite). Optional.
+
+@*return* — Number of events processed or 0 on timeout
+
+@*return* `errmsg`
+
+@*return* `errno`
 
 ## remove
 
 
 ```lua
 (method) Watchdog:remove(wd: integer)
+  -> integer?
+  2. errmsg: string?
+  3. errno: integer?
 ```
 
-Remove a specific watch descriptor.
+Remove a watch from a given descriptor.
 
 Usage:
 ```lua
-local wd_id = wd:add("/tmp", mask, cb)
-wd:remove(wd_id)
+local ok, errmsg, errno = wd:remove(wd_id)
+if not ok then error(errmsg) end
 ```
 
-@*param* `wd` — Watch descriptor returned by `add`
+@*param* `wd` — Watch descriptor previously returned by `add`
+
+@*return* — 0 on success, `nil` on error
+
+@*return* `errmsg`
+
+@*return* `errno`
 
 
 ---
@@ -304,12 +332,21 @@ integer
 
 ```lua
 function watchdog.init()
-  -> Watchdog
+  -> Watchdog?
+  2. errmsg: string?
+  3. errno: integer?
 ```
 
 Initialize a new inotify watcher.
 
 Usage:
 ```lua
-local wd = watchdog.init()
+local wd, errmsg, errno = watchdog.init()
+if not wd then error(errmsg) end
 ```
+
+@*return* — Watchdog object or `nil` on error
+
+@*return* `errmsg` — Error message if initialization failed
+
+@*return* `errno` — System `errno` on failure

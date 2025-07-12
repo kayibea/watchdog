@@ -23,7 +23,7 @@ typedef struct {
   int cb_table_ref;
 } Watchdog;
 
-static int handle_error(lua_State *L) {
+static int push_error(lua_State *L) {
   lua_pushnil(L);
   lua_pushstring(L, strerror(errno));
   lua_pushinteger(L, errno);
@@ -57,7 +57,7 @@ static int l_add(lua_State *L) {
   luaL_checktype(L, 4, LUA_TFUNCTION);
 
   int watch_fd = inotify_add_watch(wd->fd, path, mask);
-  if (watch_fd < 0) return handle_error(L);
+  if (watch_fd < 0) return push_error(L);
 
   lua_rawgeti(L, LUA_REGISTRYINDEX, wd->cb_table_ref);
   lua_pushvalue(L, 4);
@@ -72,7 +72,7 @@ static int l_remove(lua_State *L) {
   Watchdog *wd = luaL_checkudata(L, 1, WATCHDOG_MT);
   int watch_fd = luaL_checkinteger(L, 2);
 
-  if (inotify_rm_watch(wd->fd, watch_fd) < 0) return handle_error(L);
+  if (inotify_rm_watch(wd->fd, watch_fd) < 0) return push_error(L);
 
   lua_rawgeti(L, LUA_REGISTRYINDEX, wd->cb_table_ref);
   lua_pushnil(L);
@@ -93,7 +93,7 @@ static int l_poll(lua_State *L) {
   };
 
   int ret = poll(&pfd, 1, timeout);
-  if (ret < 0) return handle_error(L);
+  if (ret < 0) return push_error(L);
   if (ret == 0) {
     lua_pushinteger(L, ret);
     return 1;
@@ -101,7 +101,7 @@ static int l_poll(lua_State *L) {
 
   char buf[EVENT_BUF_LEN];
   ssize_t len = read(wd->fd, buf, sizeof(buf));
-  if (len < 0) return handle_error(L);
+  if (len < 0) return push_error(L);
   if (len == 0) {
     lua_pushinteger(L, len);
     return 1;
@@ -137,7 +137,7 @@ static int l_close(lua_State *L) {
   int ret = 0;
   if (wd->fd >= 0) {
     luaL_unref(L, LUA_REGISTRYINDEX, wd->cb_table_ref);
-    if ((ret = close(wd->fd)) < 0) return handle_error(L);
+    if ((ret = close(wd->fd)) < 0) return push_error(L);
     wd->fd = -1;
   }
   lua_pushinteger(L, ret);
@@ -148,7 +148,7 @@ static int l_gc(lua_State *L) { return l_close(L); }
 
 static int l_init(lua_State *L) {
   int fd = inotify_init1(IN_NONBLOCK);
-  if (fd < 0) return handle_error(L);
+  if (fd < 0) return push_error(L);
 
   Watchdog *wd = lua_newuserdata(L, sizeof(Watchdog));
   wd->fd = fd;
